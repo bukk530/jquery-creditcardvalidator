@@ -72,6 +72,7 @@ $.fn.validateCreditCard = (callback, options) ->
             name: 'union_pay'
             pattern: /^62[0-5]/
             valid_length: [ 13..16 ]
+            skip_luhn: true
         }
     ]
 
@@ -117,7 +118,7 @@ $.fn.validateCreditCard = (callback, options) ->
 
         callback
             card_type: card_type
-            luhn_valid: luhn_valid
+            luhn_valid: card_type.skip_luhn or luhn_valid
             length_valid: length_valid
 
     validate = ->
